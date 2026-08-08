@@ -1,0 +1,42 @@
+name: Publish to NuGet
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  publish:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Restore
+        run: dotnet restore ClipboardImageDownloader.slnx
+
+      - name: Test
+        run: dotnet test ClipboardImageDownloader.slnx -c Release --no-restore
+
+      - name: Pack
+        run: dotnet pack src/DevToys.ClipboardImageDownloader/DevToys.ClipboardImageDownloader.csproj -c Release --no-restore -o artifacts
+
+      - name: NuGet trusted login
+        id: nuget-login
+        uses: NuGet/login@v1
+        with:
+          user: ${{ vars.NUGET_USER }}
+
+      - name: Publish
+        run: dotnet nuget push "artifacts/*.nupkg" --source https://api.nuget.org/v3/index.json --api-key "${{ steps.nuget-login.outputs.NUGET_API_KEY }}" --skip-duplicate

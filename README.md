@@ -14,4 +14,10 @@ dotnet pack src/DevToys.ClipboardImageDownloader/DevToys.ClipboardImageDownloade
 
 Install the generated `.nupkg` from DevToys 2 Preview's **Manage extensions** page.
 
+## Publishing
+
+NuGet publishing uses GitHub OIDC Trusted Publishing. Configure the `NUGET_USER`
+repository variable and register `.github/workflows/nuget-publish.yml` as the
+trusted publisher on nuget.org. Push a `v*` tag or run the workflow manually.
+
 All processing is local. No telemetry or network requests are used.
