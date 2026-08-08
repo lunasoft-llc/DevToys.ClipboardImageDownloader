@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <Version>0.1.0-preview</Version>
+    <Authors>LUNASOFT</Authors>
+    <PackageId>LUNASOFT.DevToys.ClipboardImageDownloader</PackageId>
+    <Title>Clipboard Image Downloader for DevToys</Title>
+    <Description>Preview, resize, convert and save clipboard images locally.</Description>
+    <PackageTags>devtoys-app;clipboard;image;resize;convert</PackageTags>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageProjectUrl>https://github.com/lunasoft-llc/DevToys.ClipboardImageDownloader</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/lunasoft-llc/DevToys.ClipboardImageDownloader.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="DevToys.Api" Version="2.0.9-preview" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="../../README.md" Pack="true" PackagePath="/" />
+  </ItemGroup>
+</Project>
